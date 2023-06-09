@@ -18,23 +18,31 @@ public class UsuarioServicio implements Metodos<Usuario> {
 	@Autowired
 	private UsuarioRepositorio UserRepo;
 
+	// Método para crear un usuario
+	// Recibe un objeto de tipo Usuario y devuelve un booleano indicando si se ha creado correctamente
 	@Override
 	public boolean crearUsuario(Usuario objeto) {
 		Usuario objTemporal = UserRepo.save(objeto);
 		return objTemporal != null;
 	}
 
+	// Método para obtener todos los usuarios
+	// Devuelve una lista de objetos de tipo Usuario
 	@Override
 	public List<Usuario> obtenerUsuarios() {
 		return UserRepo.findAll();
 	}
 
+	// Método para eliminar un usuario por su id
+	// Recibe un id como parámetro y devuelve un booleano indicando si se ha eliminado correctamente
 	@Override
 	public boolean eliminarUsuarios(Long id) {
 		UserRepo.deleteById(id);
 		return !UserRepo.existsById(id);
 	}
 
+	// Método para actualizar un usuario
+	// Recibe un objeto de tipo Usuario y devuelve un booleano indicando si se ha actualizado correctamente
 	@Override
 	public boolean actualizarUsuarios(Usuario objeto) {
 		Optional<Usuario> objetoVerificado = UserRepo.findById(objeto.getIdUsuario());
@@ -46,6 +54,8 @@ public class UsuarioServicio implements Metodos<Usuario> {
 		}
 	}
 
+	// Método para obtener un usuario por su id
+	// Recibe un id como parámetro y devuelve un objeto de tipo Usuario
 	@Override
 	public Usuario obtenerUsuario(Long id) {
 		return UserRepo.findByIdUsuario(id);
